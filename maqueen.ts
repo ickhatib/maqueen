@@ -77,38 +77,8 @@ namespace maqueen{
         initIR(Pins.P16)
         alreadyInit=1
     }
-  
-    //% weight=62
-    //% blockGap=50
-    //% mutate=objectdestructuring
-    //% mutateText=Packeta
-    //% mutateDefaults="myparam:message"
-    //% blockId=IR_callbackUser block="on obloq received"
-    export function IR_callbackUser(maqueencb: (packet: Packeta) => void) {
-        maqueenInit()
-        IR_callback(() => {
-            const packet = new Packeta();
-            packet.mye = maqueene;
-            maqueenparam=getParam();
-            packet.myparam = maqueenparam;
-            maqueencb(packet)
-        });
-    }
-    
-    //% weight=10
-    //% blockId=IR_read block="read IR"
-    export function IR_read_ick():number{
-        maqueenInit()
-        return getParam()
-    }
-    
-   
-    function IR_callback(a: Action): void{
-        maqueencb=a
-        IrPressEvent+=1
-        onPressEvent(IrPressEvent,maqueencb)
-    }
-    
+
+
     //% blockId=ultrasonic_sensor block="sensor unit|%unit"
     //% weight=95
     export function sensor(unit: PingUnit, maxCmDistance = 500): number {
